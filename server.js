@@ -15,4 +15,5 @@ app.use(express.urlencoded({extended:true}));//parse string data
 
 connectDB()//running our DB
 require("./server/routes/goalRoutes")(app);//injecting the app for our routes
+require("./server/routes/userRoutes")(app);
 app.use(errorHandler)
