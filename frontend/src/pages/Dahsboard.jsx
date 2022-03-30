@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import GoalForm from '../components/GoalForm';
 
 const Dahsboard = () => {
     const navigate = useNavigate()
@@ -9,7 +10,7 @@ const Dahsboard = () => {
     const { user } = useSelector((state) => state.auth)
 
     useEffect(() => {
-        if(!user) {
+        if (!user) {
             navigate("/login")
         }
     }, [user, navigate]);
@@ -17,9 +18,16 @@ const Dahsboard = () => {
 
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-        </div>
+        <>
+            <section className='heading'>
+                <h1>Welcome {user && user.name}</h1>
+                <p>Goals Dashboard</p>
+            </section>
+            <GoalForm />
+            <section className='content'>
+                
+            </section>
+        </>
     );
 };
 
