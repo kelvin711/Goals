@@ -6,7 +6,7 @@ import Spinner from '../components/Spinner'
 import { getGoals, reset } from '../features/goals/goalSlice'
 import GoalItem from '../components/GoalItem';
 
-const Dahsboard = () => {
+const Dashboard = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -16,27 +16,28 @@ const Dahsboard = () => {
     )
 
     useEffect(() => {
-        if (isError) {
-            console.log(message)
-        }
-
         if (!user) {
-            navigate("/login")
+            navigate("/login");
+            return;
         }
 
-        dispatch(getGoals())
+        if (isError) {
+            console.log(message);
+        }
+
+        dispatch(getGoals());
 
         return () => {
-            dispatch(reset())
+            dispatch(reset());
         }
     }, [user, navigate, isError, message, dispatch]);
 
-    if (isLoading) return <Spinner />
+    if (isLoading) return <Spinner />;
 
     return (
         <>
             <section className='heading'>
-                <h1>Welcome {user && user.name}</h1>
+                <h1>Welcome {user?.name}</h1>
                 <p>Goals Dashboard</p>
             </section>
             <GoalForm />
@@ -48,11 +49,15 @@ const Dahsboard = () => {
                         ))}
                     </div>
                 ) : (
-                    <h3>You have not set any goals</h3>
+                    <div className="no-goals-message">
+                        <span className="no-goals-message-icon">📝</span> 
+                        <h3>You have not set any goals</h3>
+                        <button className="set-goal-button">Set your first goal</button>
+                    </div>
                 )}
             </section>
         </>
     );
 };
 
-export default Dahsboard;
+export default Dashboard;

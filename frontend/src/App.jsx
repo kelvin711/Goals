@@ -4,21 +4,21 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Routes, Route } from "react-router-dom"
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Dahsboard from './pages/Dahsboard';
+import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
 
 function App() {
-  return (
-    <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Dahsboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-        <ToastContainer />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header />
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+            </Routes>
+            <ToastContainer />
+        </div>
+    );
 }
 
 export default App;
